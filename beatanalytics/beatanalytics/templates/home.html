@@ -4,9 +4,25 @@
 
 {% block content %}
 
+{% if artists %}
 
-<div>Home</div>
+    <div class="artists-container">
+        <h2>Artists</h2>
+        {% for artist, count in artists.items %}
+            <div class="artist-item">
+                <div class="artist_name">{{ artist }}</div>
+                <div class="artist_count">{{ count }}</div>
+            </div>
+        {% endfor %}
+    </div>
 
+{% else %}
+
+<div class="intro-text">
+    <h2>Welcome</h2>
+</div>
+
+{% endif %}
 
 {% endblock content %}
 
