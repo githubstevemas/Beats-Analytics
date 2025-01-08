@@ -7,14 +7,23 @@
 {% if artists %}
 
     <div class="artists-container">
-        <h2>Artists</h2>
+        <h2>MOST LISTENED ARTISTS</h2>
         {% for artist, count in artists.items %}
-            <div class="artist-item">
-                <div class="artist_name">{{ artist }}</div>
-                <div class="artist_count">{{ count }}</div>
+            <div class="artist-container">
+                <div class="artist-position"># {{ forloop.counter }}</div>
+                <div class="artist-item">
+                    <div class="artist_name">{{ artist }}</div>
+                    <div class="artist_count">{{ count }}</div>
+                </div>
             </div>
         {% endfor %}
     </div>
+
+    <div class="nav-container">
+        <button id="prev-btn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></button>
+        <button id="next-btn" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+
 
 {% else %}
 
