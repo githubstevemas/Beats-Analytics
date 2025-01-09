@@ -1,14 +1,7 @@
-import json
-
 from collections import Counter
 
 
-def extract():
-
-    with open('../Spotify Account Data/StreamingHistory_music_0.json',
-              'r',
-              encoding='utf-8') as file:
-        data = json.load(file)
+def extract(data):
 
     artists_list = []
     songs_list = []
@@ -24,9 +17,11 @@ def extract():
     songs_counted = Counter(songs_list)
     total_duration = sum(duration)
 
-    return (artist_counted.most_common(),
-            songs_counted.most_common(),
-            total_duration)
+    return {
+        "artists": dict(artist_counted.most_common()),
+        "songs": dict(songs_counted.most_common()),
+        "total_duration": total_duration
+    }
 
 
 if __name__ == '__main__':

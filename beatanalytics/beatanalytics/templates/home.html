@@ -28,7 +28,16 @@
 {% else %}
 
 <div class="intro-text">
+
     <h2>Welcome</h2>
+    <h3>Select JSON file</h3>
+
+    <form action="{% url 'analysis' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="json_file" accept=".json" required>
+        <button type="submit">Traiter</button>
+    </form>
+
 </div>
 
 {% endif %}
