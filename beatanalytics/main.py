@@ -10,19 +10,22 @@ def extract(data):
     for element in data:
 
         artists_list.append(element["artistName"])
-        songs_list.append(element["trackName"])
+
+        song = (element["trackName"], element["artistName"])
+        songs_list.append(song)
+
         duration.append(element["msPlayed"])
 
     artist_counted = Counter(artists_list)
     songs_counted = Counter(songs_list)
     total_duration = sum(duration)
 
-    return {
-        "artists": dict(artist_counted.most_common()),
-        "songs": dict(songs_counted.most_common()),
-        "total_duration": total_duration
+    formatted_songs = {
+        f"{song[0]} - {song[1]}": count for song, count in songs_counted.items()
     }
 
-
-if __name__ == '__main__':
-    extract()
+    return {
+        "artists": dict(artist_counted.most_common()),
+        "songs": formatted_songs,
+        "total_duration": total_duration
+    }

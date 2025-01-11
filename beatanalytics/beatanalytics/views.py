@@ -21,10 +21,13 @@ def process_json(request):
             json_data = json.load(json_file)
 
             result = extract(json_data)
+            sorted_songs = dict(
+                sorted(result['songs'].items(), key=lambda item: item[1],
+                       reverse=True))
 
             return render(request, 'home.html', {
                 'artists': result['artists'],
-                'songs': result['songs'],
+                'songs': sorted_songs,
                 'total_duration': result['total_duration'],
             })
         except Exception as e:

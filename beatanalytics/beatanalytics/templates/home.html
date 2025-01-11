@@ -7,23 +7,27 @@
 {% if artists %}
 
     <div class="artists-container">
+
         <h2>MOST LISTENED ARTISTS</h2>
+
         {% for artist, count in artists.items %}
+
             <div class="artist-container">
                 <div class="artist-position"># {{ forloop.counter }}</div>
                 <div class="artist-item">
-                    <div class="artist_name">{{ artist }}</div>
-                    <div class="artist_count">{{ count }}</div>
+                    <div class="artist-name">{{ artist }}</div>
+                    <div class="artist-count">{{ count }}</div>
                 </div>
             </div>
+
         {% endfor %}
+
     </div>
 
     <div class="nav-container">
-        <button id="prev-btn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></button>
-        <button id="next-btn" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></button>
+        <button id="artist-prev-btn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></button>
+        <button id="artist-next-btn" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></button>
     </div>
-
 
 {% else %}
 
@@ -35,10 +39,37 @@
     <form action="{% url 'analysis' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="file" name="json_file" accept=".json" required>
-        <button type="submit">Traiter</button>
+        <button type="submit" class="button">Traiter</button>
     </form>
 
 </div>
+
+{% endif %}
+
+{% if songs %}
+
+    <div class="songs-container">
+
+        <h2>MOST LISTENED SONGS</h2>
+
+        {% for song, count in songs.items %}
+
+            <div class="song-container">
+                <div class="song-position"># {{ forloop.counter }}</div>
+                <div class="song-item">
+                    <div class="song-name">{{ song }}</div>
+                    <div class="song-count">{{ count }} times</div>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="nav-container">
+        <button id="song-prev-btn" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></button>
+        <button id="song-next-btn" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></button>
+    </div>
 
 {% endif %}
 
